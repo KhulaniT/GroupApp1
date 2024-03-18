@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="mt-4">Search Results for "{{ query }}"</h1>
+{% if applications %}
+    <ul class="list-group mt-3">
+        {% for application in applications %}
+            <li class="list-group-item">{{ application.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No applications found for "{{ query }}".</p>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="border rounded p-4">
+      <legend class="border-bottom mb-4 text-primary"><i class="fas fa-sign-in-alt"></i> Login</legend>
+      <div class="form-group">
+        <label for="email" class="form-control-label">
+          <i class="fas fa-envelope"></i> {{ form.email.label.text }}
+        </label>
+        {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.email(class="form-control")}}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-control-label">
+          <i class="fas fa-lock"></i> {{ form.password.label.text }}
+        </label>
+        {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.password(class="form-control")}}
+        {% endif %}
+      </div>
+      <div class="form-group form-check">
+        {{ form.remember(class="form-check-input") }}
+        <label class="form-check-label" for="remember">{{ form.remember.label.text }}</label>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      <small class="text-muted ml-2">
+        <a href="#"><i class="fas fa-question-circle"></i> Forgot Password?</a>
+      </small>
+    </fieldset>
+  </form>
+</div>
+<div class="border-top pt-3">
+    <small class="text-muted">
+      <i class="fas fa-user-plus"></i> <span style="color: red;">Don't Have an Account?</span> <a class="ml-2" href="{{ url_for('register')}}"><i class="fas fa-user-plus"></i> Register Today</a>
+    </small>
+  </div>
+  
+{% endblock %}

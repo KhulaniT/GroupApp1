@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- adding more  CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    {% if title %}
+    <title>Finacial Aid Hub - {{ title}}</title>
+    {% else %}
+        <title>Bursary Programme</title>
+    {% endif%}
+    <style>
+      /* Inline CSS to set the background image dynamically */
+      body {
+          background: url('{{ url_for("static", filename="3.jpg") }}') center center/cover no-repeat fixed;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          overflow: hidden;
+          overflow-y: auto
+      }
+  </style>
+</head>
+<body>
+<!-- navigation bar*** -->
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+  <div class="container">
+      <a href="{{ url_for('home') }}" class="navbar-brand mr-4"><i class="fas fa-home" style="color: white;"></i> Financial Aid Hub</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          {% if current_user.is_authenticated %}
+              {% if current_user.role == 'admin' %}
+                  <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Application</a>
+              {% elif current_user.role == 'student' %}
+              <a href="#" class="nav-item nav-link">View Applications</a>
+              {% endif %}
+          {% endif %}
+      </div>
+         <!-- Navbar Right Side -->
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('account') }}"><i class="fas fa-user-circle fa-lg mr-1"></i>Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt fa-lg mr-1"></i>Logout</a>
+            {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt fa-lg mr-1"></i>Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}"><i class="fas fa-user-plus fa-lg mr-1"></i>Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('about') }}"><i class="fas fa-info-circle fa-lg mr-1"></i>About</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</nav>
+ </header>
+    <!-- main div class selfmade*** -->
+    <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    {{ message }}
+                  </div>
+                  {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+          </div>
+         <div class="col-md-4">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="content-section">
+      <h5>Explore Opportunities</h5>
+      <p class="text-muted">
+        <a href="{{ url_for('scholarships') }}" class="btn btn-dark"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+        <a href="{{ url_for('bursaries') }}" class="btn btn-dark"><i class="fas fa-money-bill-wave"></i> Bursaries</a>
+        <a href="{{ url_for('grants') }}" class="btn btn-dark"><i class="fas fa-hand-holding-usd"></i> Grants</a>
+      </p>
+    </div>
+  </aside>
+</div>
+                   
+      </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

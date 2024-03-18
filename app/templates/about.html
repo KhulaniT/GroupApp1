@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <style>
+        /* Custom CSS for the About page */
+h1 {
+    color: #333; /* Dark grey text color */
+    font-size: 36px; /* Larger font size for the heading */
+    margin-bottom: 20px; /* Add some space below the heading */
+}
+
+p {
+    color: #110101; /* Slightly lighter grey text color */
+    font-size: 18px; /* Regular font size for paragraphs */
+    line-height: 1.6; /* Increase line height for better readability */
+}
+
+/* Optional: Add a background color or image to the entire content area */
+.content-container {
+    background-color: #1157c12f; /* Light grey background color */
+    padding: 20px; /* Add padding around the content */
+}
+
+    </style>
+
+    <div class="content-container">
+        <h1>About page</h1>
+        <p>In response to the challenges students face in navigating financial aid, scholarships,
+            and bursaries, we have developed a comprehensive online platform to centralize information
+            and provide guidance tailored to individual needs.</p>
+    </div>
+{% endblock content %}

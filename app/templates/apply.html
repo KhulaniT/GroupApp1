@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Application Form</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-select") }}
+        </div>
+        <div class="form-group">
+            {{ form.surname.label(class="form-label") }}
+            {{ form.surname(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.full_name.label(class="form-label") }}
+            {{ form.full_name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.id_number.label(class="form-label") }}
+            {{ form.id_number(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.ethnicity.label(class="form-label") }}
+            {{ form.ethnicity(class="form-select") }}
+        </div>
+        <div class="form-group">
+            {{ form.gender.label(class="form-label") }}
+            {{ form.gender(class="form-select") }}
+        </div>
+        <div class="form-group">
+            {{ form.motivation.label(class="form-label") }}
+            {{ form.motivation(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.registration_proof.label(class="form-label") }}
+            {{ form.registration_proof(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.id_copy.label(class="form-label") }}
+            {{ form.id_copy(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.academic_results.label(class="form-label") }}
+            {{ form.academic_results(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
+

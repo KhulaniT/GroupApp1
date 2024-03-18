@@ -1,0 +1,41 @@
+<!-- view_applications.html -->
+
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Your Applications</h1>
+    <ul>
+        {% for application in applications %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Full Name</th>
+                    <th>ID Number</th>
+                    <th>Ethnicity</th>
+                    <th>Gender</th>
+                    <th>Date Applied</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>{{ application.title }}</td>
+                    <td>{{ application.full_name }}</td>
+                    <td>{{ application.id_number }}</td>
+                    <td>{{ application.ethnicity }}</td>
+                    <td>{{ application.gender }}</td>
+                    <td>{{ application.date_applied.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <a href="{{ url_for('view_application', app_id=application.id) }}" class="btn btn-primary">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+   
+
